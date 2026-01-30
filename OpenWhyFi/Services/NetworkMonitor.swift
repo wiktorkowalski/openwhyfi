@@ -9,6 +9,8 @@ class NetworkMonitor {
     private(set) var metrics = NetworkMetrics()
     private(set) var isRefreshing = false
     private(set) var lastUpdate: Date?
+    private(set) var speedTestResult: SpeedTestResult?
+    private(set) var isRunningSpeedTest = false
 
     private let wifiMonitor = WiFiMonitor()
     nonisolated(unsafe) private var refreshTask: Task<Void, Never>?
@@ -20,6 +22,15 @@ class NetworkMonitor {
 
     var internetLatencyPoints: [LatencyPoint] {
         metrics.latencyPoints.elements
+    }
+
+    var suggestions: [Suggestion] {
+        SuggestionEngine.analyze(
+            wifiInfo: wifiInfo,
+            status: networkStatus,
+            metrics: metrics,
+            speedTest: speedTestResult
+        )
     }
 
     init() {
@@ -77,7 +88,8 @@ class NetworkMonitor {
     private func startAutoRefresh() {
         autoRefreshTask = Task { [weak self] in
             while !Task.isCancelled {
-                try? await Task.sleep(nanoseconds: 5_000_000_000) // 5 seconds
+                let interval = UInt64(AppSettings.shared.refreshInterval) * 1_000_000_000
+                try? await Task.sleep(nanoseconds: interval)
                 await self?.refresh()
             }
         }
@@ -86,5 +98,13 @@ class NetworkMonitor {
     func stopAutoRefresh() {
         autoRefreshTask?.cancel()
         autoRefreshTask = nil
+    }
+
+    func runSpeedTest() async {
+        guard !isRunningSpeedTest else { return }
+        isRunningSpeedTest = true
+        defer { isRunningSpeedTest = false }
+
+        speedTestResult = await SpeedTestService.shared.runSpeedTest()
     }
 }

@@ -25,6 +25,12 @@
 		A1000010FFFFFFFF00000010 /* GatewayFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1100010FFFFFFFF00000010 /* GatewayFinder.swift */; };
 		A1000020FFFFFFFF00000020 /* CoreWLAN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1100020FFFFFFFF00000020 /* CoreWLAN.framework */; };
 		A1000021FFFFFFFF00000021 /* DNSService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1100021FFFFFFFF00000021 /* DNSService.swift */; };
+		A1000022FFFFFFFF00000022 /* SpeedTestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1100022FFFFFFFF00000022 /* SpeedTestService.swift */; };
+		A1000023FFFFFFFF00000023 /* SpeedTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1100023FFFFFFFF00000023 /* SpeedTestView.swift */; };
+		A1000024FFFFFFFF00000024 /* SuggestionEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1100024FFFFFFFF00000024 /* SuggestionEngine.swift */; };
+		A1000025FFFFFFFF00000025 /* SuggestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1100025FFFFFFFF00000025 /* SuggestionsView.swift */; };
+		A1000026FFFFFFFF00000026 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1100026FFFFFFFF00000026 /* AppSettings.swift */; };
+		A1000027FFFFFFFF00000027 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1100027FFFFFFFF00000027 /* PreferencesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +55,12 @@
 		A1200000FFFFFFFF00000000 /* OpenWhyFi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenWhyFi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1300000FFFFFFFF00000000 /* OpenWhyFi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OpenWhyFi.entitlements; sourceTree = "<group>"; };
 		A1100021FFFFFFFF00000021 /* DNSService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNSService.swift; sourceTree = "<group>"; };
+		A1100022FFFFFFFF00000022 /* SpeedTestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedTestService.swift; sourceTree = "<group>"; };
+		A1100023FFFFFFFF00000023 /* SpeedTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedTestView.swift; sourceTree = "<group>"; };
+		A1100024FFFFFFFF00000024 /* SuggestionEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionEngine.swift; sourceTree = "<group>"; };
+		A1100025FFFFFFFF00000025 /* SuggestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsView.swift; sourceTree = "<group>"; };
+		A1100026FFFFFFFF00000026 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		A1100027FFFFFFFF00000027 /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +124,9 @@
 				A1100005FFFFFFFF00000005 /* NetworkStatusView.swift */,
 				A1100006FFFFFFFF00000006 /* MetricsView.swift */,
 				A1100007FFFFFFFF00000007 /* SparklineView.swift */,
+				A1100023FFFFFFFF00000023 /* SpeedTestView.swift */,
+				A1100025FFFFFFFF00000025 /* SuggestionsView.swift */,
+				A1100027FFFFFFFF00000027 /* PreferencesView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -123,6 +138,7 @@
 				A1100009FFFFFFFF00000009 /* NetworkStatus.swift */,
 				A110000AFFFFFFFF0000000A /* NetworkMetrics.swift */,
 				A110000BFFFFFFFF0000000B /* CircularBuffer.swift */,
+				A1100026FFFFFFFF00000026 /* AppSettings.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -134,6 +150,8 @@
 				A110000DFFFFFFFF0000000D /* PingService.swift */,
 				A110000EFFFFFFFF0000000E /* NetworkMonitor.swift */,
 				A1100021FFFFFFFF00000021 /* DNSService.swift */,
+				A1100022FFFFFFFF00000022 /* SpeedTestService.swift */,
+				A1100024FFFFFFFF00000024 /* SuggestionEngine.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -228,6 +246,12 @@
 				A100000FFFFFFFFF0000000F /* ShellExecutor.swift in Sources */,
 				A1000010FFFFFFFF00000010 /* GatewayFinder.swift in Sources */,
 				A1000021FFFFFFFF00000021 /* DNSService.swift in Sources */,
+				A1000022FFFFFFFF00000022 /* SpeedTestService.swift in Sources */,
+				A1000023FFFFFFFF00000023 /* SpeedTestView.swift in Sources */,
+				A1000024FFFFFFFF00000024 /* SuggestionEngine.swift in Sources */,
+				A1000025FFFFFFFF00000025 /* SuggestionsView.swift in Sources */,
+				A1000026FFFFFFFF00000026 /* AppSettings.swift in Sources */,
+				A1000027FFFFFFFF00000027 /* PreferencesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,7 +395,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 0.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.openwhyfi.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -398,7 +422,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.1.0;
+				MARKETING_VERSION = 0.3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.openwhyfi.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

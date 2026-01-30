@@ -2,6 +2,7 @@ import SwiftUI
 
 struct PopoverContentView: View {
     var monitor: NetworkMonitor
+    @State private var showingPreferences = false
 
     var body: some View {
         VStack(spacing: 12) {
@@ -15,6 +16,22 @@ struct PopoverContentView: View {
                     title: "Latency History"
                 )
                 MetricsView(metrics: monitor.metrics)
+                SpeedTestView(
+                    result: Binding(
+                        get: { monitor.speedTestResult },
+                        set: { _ in }
+                    ),
+                    isRunning: Binding(
+                        get: { monitor.isRunningSpeedTest },
+                        set: { _ in }
+                    ),
+                    onRunTest: {
+                        Task {
+                            await monitor.runSpeedTest()
+                        }
+                    }
+                )
+                SuggestionsView(suggestions: monitor.suggestions)
             }
             .padding(.horizontal)
 
@@ -24,7 +41,7 @@ struct PopoverContentView: View {
         }
         .padding(.top, 20)
         .padding(.bottom, 12)
-        .frame(width: 320, height: 580)
+        .frame(width: 320, height: 820)
     }
 
     private var header: some View {
@@ -56,6 +73,16 @@ struct PopoverContentView: View {
                 .font(.caption2)
                 .foregroundStyle(.secondary)
             Spacer()
+            Button {
+                showingPreferences = true
+            } label: {
+                Image(systemName: "gear")
+            }
+            .buttonStyle(.borderless)
+            .foregroundStyle(.secondary)
+            .sheet(isPresented: $showingPreferences) {
+                PreferencesView(settings: AppSettings.shared)
+            }
             Button("Quit") {
                 NSApp.terminate(nil)
             }
