@@ -7,10 +7,20 @@ struct LatencyPoint: Identifiable {
     let internetLatency: Double?
 }
 
+struct SignalPoint: Identifiable {
+    let id = UUID()
+    let timestamp: Date
+    let rssi: Int
+    let noise: Int
+
+    var snr: Int { rssi - noise }
+}
+
 struct NetworkMetrics {
     var routerHistory: CircularBuffer<Double>
     var internetHistory: CircularBuffer<Double>
     var latencyPoints: CircularBuffer<LatencyPoint>
+    var signalPoints: CircularBuffer<SignalPoint>
 
     private var routerAttempts: Int = 0
     private var routerSuccesses: Int = 0
@@ -21,6 +31,26 @@ struct NetworkMetrics {
         routerHistory = CircularBuffer(capacity: capacity)
         internetHistory = CircularBuffer(capacity: capacity)
         latencyPoints = CircularBuffer(capacity: capacity)
+        signalPoints = CircularBuffer(capacity: capacity)
+    }
+
+    mutating func recordSignal(rssi: Int, noise: Int) {
+        let point = SignalPoint(timestamp: Date(), rssi: rssi, noise: noise)
+        signalPoints.append(point)
+    }
+
+    var minRssi: Int? {
+        signalPoints.elements.map(\.rssi).min()
+    }
+
+    var maxRssi: Int? {
+        signalPoints.elements.map(\.rssi).max()
+    }
+
+    var avgRssi: Double? {
+        let elements = signalPoints.elements
+        guard !elements.isEmpty else { return nil }
+        return Double(elements.map(\.rssi).reduce(0, +)) / Double(elements.count)
     }
 
     mutating func record(router: Double?, internet: Double?) {

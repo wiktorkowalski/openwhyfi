@@ -24,6 +24,10 @@ class NetworkMonitor {
         metrics.latencyPoints.elements
     }
 
+    var signalPoints: [SignalPoint] {
+        metrics.signalPoints.elements
+    }
+
     var suggestions: [Suggestion] {
         SuggestionEngine.analyze(
             wifiInfo: wifiInfo,
@@ -49,6 +53,11 @@ class NetworkMonitor {
 
         // Get Wi-Fi info
         wifiInfo = await wifiMonitor.currentInfo()
+
+        // Record signal strength
+        if wifiInfo.ssid != "Not Connected" {
+            metrics.recordSignal(rssi: wifiInfo.rssi, noise: wifiInfo.noise)
+        }
 
         // Get gateway
         let gateway = await GatewayFinder.shared.findDefaultGateway()

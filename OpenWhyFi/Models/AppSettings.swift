@@ -37,6 +37,9 @@ class AppSettings {
     var showSuggestions: Bool {
         didSet { UserDefaults.standard.set(showSuggestions, forKey: "showSuggestions") }
     }
+    var showSignalChart: Bool {
+        didSet { UserDefaults.standard.set(showSignalChart, forKey: "showSignalChart") }
+    }
 
     private init() {
         self.refreshInterval = UserDefaults.standard.object(forKey: "refreshInterval") as? Int ?? 5
@@ -49,6 +52,7 @@ class AppSettings {
         self.showStatistics = UserDefaults.standard.object(forKey: "showStatistics") as? Bool ?? true
         self.showSpeedTest = UserDefaults.standard.object(forKey: "showSpeedTest") as? Bool ?? true
         self.showSuggestions = UserDefaults.standard.object(forKey: "showSuggestions") as? Bool ?? true
+        self.showSignalChart = UserDefaults.standard.object(forKey: "showSignalChart") as? Bool ?? true
     }
 
     private func updateLaunchAtLogin() {

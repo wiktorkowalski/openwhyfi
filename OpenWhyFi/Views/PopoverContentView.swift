@@ -13,6 +13,15 @@ struct PopoverContentView: View {
                 if settings.showWiFiInfo {
                     WiFiInfoView(info: monitor.wifiInfo)
                 }
+                if settings.showSignalChart {
+                    SignalChartView(
+                        points: monitor.signalPoints,
+                        currentRssi: monitor.wifiInfo.rssi,
+                        minRssi: monitor.metrics.minRssi,
+                        maxRssi: monitor.metrics.maxRssi,
+                        avgRssi: monitor.metrics.avgRssi
+                    )
+                }
                 if settings.showConnectionStatus {
                     NetworkStatusView(status: monitor.networkStatus)
                 }

@@ -19,6 +19,7 @@ struct PreferencesView: View {
 
                 Section("Visible Sections") {
                     Toggle("Wi-Fi Info", isOn: $settings.showWiFiInfo)
+                    Toggle("Signal Chart", isOn: $settings.showSignalChart)
                     Toggle("Connection Status", isOn: $settings.showConnectionStatus)
                     Toggle("Latency History", isOn: $settings.showLatencyHistory)
                     Toggle("Statistics", isOn: $settings.showStatistics)
@@ -37,6 +38,6 @@ struct PreferencesView: View {
             }
             .padding()
         }
-        .frame(width: 320, height: 380)
+        .frame(width: 320, height: 400)
     }
 }
