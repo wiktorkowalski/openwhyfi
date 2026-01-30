@@ -51,5 +51,17 @@ jobs:
         with:
           files: OpenWhyFi.zip
           generate_release_notes: true
+          body: |
+            ## Installation
+
+            **Option 1:** Download via Terminal (no extra steps needed):
+            ```bash
+            curl -L https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/OpenWhyFi.zip -o OpenWhyFi.zip && unzip OpenWhyFi.zip
+            ```
+
+            **Option 2:** If you downloaded via browser, run this to allow the app to open:
+            ```bash
+            xattr -cr ~/Downloads/OpenWhyFi.app
+            ```
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
