@@ -3,13 +3,12 @@ import SwiftUI
 struct PopoverContentView: View {
     var monitor: NetworkMonitor
     var settings = AppSettings.shared
-    @State private var showingPreferences = false
 
     var body: some View {
         VStack(spacing: 12) {
             header
 
-            VStack(spacing: 12) {
+            VStack(spacing: 8) {
                 if settings.showWiFiInfo {
                     WiFiInfoView(info: monitor.wifiInfo)
                 }
@@ -23,16 +22,11 @@ struct PopoverContentView: View {
                     )
                 }
                 if settings.showConnectionStatus {
-                    NetworkStatusView(status: monitor.networkStatus)
-                }
-                if settings.showLatencyHistory {
-                    SparklineView(
-                        points: monitor.routerLatencyPoints,
-                        title: "Latency History"
+                    NetworkHealthView(
+                        status: monitor.networkStatus,
+                        metrics: monitor.metrics,
+                        latencyPoints: monitor.routerLatencyPoints
                     )
-                }
-                if settings.showStatistics {
-                    MetricsView(metrics: monitor.metrics)
                 }
                 if settings.showSpeedTest {
                     SpeedTestView(
@@ -94,22 +88,25 @@ struct PopoverContentView: View {
                 .font(.caption2)
                 .foregroundStyle(.secondary)
             Spacer()
-            Button {
-                showingPreferences = true
-            } label: {
+            Button(action: openPreferences) {
                 Image(systemName: "gear")
             }
             .buttonStyle(.borderless)
             .foregroundStyle(.secondary)
-            .sheet(isPresented: $showingPreferences) {
-                PreferencesView(settings: AppSettings.shared)
-            }
-            Button("Quit") {
-                NSApp.terminate(nil)
+            Button(action: quitApp) {
+                Text("Quit")
             }
             .buttonStyle(.borderless)
             .foregroundStyle(.secondary)
         }
         .padding(.horizontal)
+    }
+
+    private func openPreferences() {
+        AppDelegate.shared.showPreferences()
+    }
+
+    private func quitApp() {
+        NSApp.terminate(nil)
     }
 }

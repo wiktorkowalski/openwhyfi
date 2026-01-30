@@ -19,6 +19,7 @@ struct SignalPoint: Identifiable {
 struct NetworkMetrics {
     var routerHistory: CircularBuffer<Double>
     var internetHistory: CircularBuffer<Double>
+    var dnsHistory: CircularBuffer<Double>
     var latencyPoints: CircularBuffer<LatencyPoint>
     var signalPoints: CircularBuffer<SignalPoint>
 
@@ -26,10 +27,13 @@ struct NetworkMetrics {
     private var routerSuccesses: Int = 0
     private var internetAttempts: Int = 0
     private var internetSuccesses: Int = 0
+    private var dnsAttempts: Int = 0
+    private var dnsSuccesses: Int = 0
 
     init(capacity: Int = 60) {
         routerHistory = CircularBuffer(capacity: capacity)
         internetHistory = CircularBuffer(capacity: capacity)
+        dnsHistory = CircularBuffer(capacity: capacity)
         latencyPoints = CircularBuffer(capacity: capacity)
         signalPoints = CircularBuffer(capacity: capacity)
     }
@@ -51,6 +55,23 @@ struct NetworkMetrics {
         let elements = signalPoints.elements
         guard !elements.isEmpty else { return nil }
         return Double(elements.map(\.rssi).reduce(0, +)) / Double(elements.count)
+    }
+
+    mutating func recordDNS(_ queryTime: Double?) {
+        dnsAttempts += 1
+        if let time = queryTime {
+            dnsHistory.append(time)
+            dnsSuccesses += 1
+        }
+    }
+
+    var dnsJitter: Double? {
+        calculateJitter(from: dnsHistory.elements)
+    }
+
+    var dnsLossPercent: Double {
+        guard dnsAttempts > 0 else { return 0 }
+        return Double(dnsAttempts - dnsSuccesses) / Double(dnsAttempts) * 100
     }
 
     mutating func record(router: Double?, internet: Double?) {

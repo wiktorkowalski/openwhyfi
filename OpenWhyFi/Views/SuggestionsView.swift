@@ -4,21 +4,24 @@ struct SuggestionsView: View {
     let suggestions: [Suggestion]
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("Suggestions")
-                .font(.subheadline)
-                .fontWeight(.semibold)
-
-            if suggestions.isEmpty {
-                HStack {
-                    Image(systemName: "checkmark.circle.fill")
-                        .foregroundStyle(.green)
-                    Text("Network looks healthy")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
+        VStack(alignment: .leading, spacing: 6) {
+            HStack {
+                Text("Suggestions")
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                Spacer()
+                if suggestions.isEmpty {
+                    HStack(spacing: 4) {
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundStyle(.green)
+                        Text("All good")
+                            .foregroundStyle(.secondary)
+                    }
+                    .font(.caption)
                 }
-                .padding(.vertical, 4)
-            } else {
+            }
+
+            if !suggestions.isEmpty {
                 ForEach(suggestions.prefix(3)) { suggestion in
                     SuggestionRow(suggestion: suggestion)
                 }
@@ -34,10 +37,11 @@ struct SuggestionRow: View {
     let suggestion: Suggestion
 
     var body: some View {
-        HStack(alignment: .top, spacing: 8) {
+        HStack(alignment: .top, spacing: 6) {
             Image(systemName: suggestion.icon)
                 .foregroundStyle(severityColor)
-                .frame(width: 16)
+                .frame(width: 14)
+                .font(.caption)
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(suggestion.title)

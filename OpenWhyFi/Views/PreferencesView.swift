@@ -1,8 +1,11 @@
 import SwiftUI
+import CoreLocation
 
 struct PreferencesView: View {
     @Bindable var settings: AppSettings
     @Environment(\.dismiss) private var dismiss
+    @State private var locationStatus: CLAuthorizationStatus = .notDetermined
+    let onRequestLocation: () -> Void
 
     var body: some View {
         VStack(spacing: 0) {
@@ -17,12 +20,48 @@ struct PreferencesView: View {
                     }
                 }
 
+                Section {
+                    if hasLocationPermission {
+                        VStack(alignment: .leading, spacing: 8) {
+                            HStack {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .foregroundStyle(.green)
+                                Text("Wi-Fi name access granted")
+                            }
+                            .font(.caption)
+
+                            Button("Revoke in System Settings...") {
+                                openLocationSettings()
+                            }
+                            .buttonStyle(.link)
+                            .font(.caption2)
+                        }
+                    } else {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Show Wi-Fi network name")
+                                .font(.caption)
+                                .fontWeight(.medium)
+                            Text("Requires location permission. Apple considers Wi-Fi names location-sensitive. Your location is never collected or shared.")
+                                .font(.caption2)
+                                .foregroundStyle(.secondary)
+                            Button("Grant Permission") {
+                                onRequestLocation()
+                                // Check status after a delay
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                    updateLocationStatus()
+                                }
+                            }
+                            .buttonStyle(.bordered)
+                        }
+                    }
+                } header: {
+                    Text("Privacy")
+                }
+
                 Section("Visible Sections") {
                     Toggle("Wi-Fi Info", isOn: $settings.showWiFiInfo)
                     Toggle("Signal Chart", isOn: $settings.showSignalChart)
-                    Toggle("Connection Status", isOn: $settings.showConnectionStatus)
-                    Toggle("Latency History", isOn: $settings.showLatencyHistory)
-                    Toggle("Statistics", isOn: $settings.showStatistics)
+                    Toggle("Network Health", isOn: $settings.showConnectionStatus)
                     Toggle("Speed Test", isOn: $settings.showSpeedTest)
                     Toggle("Suggestions", isOn: $settings.showSuggestions)
                 }
@@ -38,6 +77,23 @@ struct PreferencesView: View {
             }
             .padding()
         }
-        .frame(width: 320, height: 400)
+        .frame(width: 320, height: 420)
+        .onAppear {
+            updateLocationStatus()
+        }
+    }
+
+    private var hasLocationPermission: Bool {
+        locationStatus == .authorizedAlways || locationStatus == .authorized
+    }
+
+    private func updateLocationStatus() {
+        locationStatus = CLLocationManager().authorizationStatus
+    }
+
+    private func openLocationSettings() {
+        if let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_LocationServices") {
+            NSWorkspace.shared.open(url)
+        }
     }
 }

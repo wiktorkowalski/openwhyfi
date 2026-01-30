@@ -4,45 +4,36 @@ struct WiFiInfoView: View {
     let info: WiFiInfo
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            HStack {
-                Image(systemName: wifiIcon)
-                    .font(.title2)
-                    .foregroundStyle(signalColor)
+        HStack {
+            Image(systemName: wifiIcon)
+                .font(.title3)
+                .foregroundStyle(signalColor)
+            VStack(alignment: .leading, spacing: 2) {
                 Text(info.ssid)
-                    .font(.headline)
-                Spacer()
-                Text(info.band.rawValue)
-                    .font(.caption)
-                    .padding(.horizontal, 6)
-                    .padding(.vertical, 2)
-                    .background(Color.secondary.opacity(0.2))
-                    .cornerRadius(4)
+                    .font(.subheadline)
+                    .fontWeight(.medium)
+                HStack(spacing: 8) {
+                    Text("\(info.rssi) dBm")
+                        .foregroundStyle(signalColor)
+                    Text("•")
+                        .foregroundStyle(.secondary)
+                    Text("Ch \(info.channel)")
+                    if info.transmitRate > 0 {
+                        Text("•")
+                            .foregroundStyle(.secondary)
+                        Text("\(Int(info.transmitRate)) Mbps")
+                    }
+                }
+                .font(.caption)
+                .foregroundStyle(.secondary)
             }
-
-            HStack(spacing: 16) {
-                MetricBadge(
-                    label: "Signal",
-                    value: "\(info.rssi) dBm",
-                    quality: info.signalQuality.color
-                )
-                MetricBadge(
-                    label: "SNR",
-                    value: "\(info.snr) dB",
-                    quality: snrQuality
-                )
-                MetricBadge(
-                    label: "Channel",
-                    value: "\(info.channel)",
-                    quality: "blue"
-                )
-            }
-
-            if info.transmitRate > 0 {
-                Text("TX Rate: \(Int(info.transmitRate)) Mbps")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
+            Spacer()
+            Text(info.band.rawValue)
+                .font(.caption)
+                .padding(.horizontal, 6)
+                .padding(.vertical, 2)
+                .background(Color.secondary.opacity(0.2))
+                .cornerRadius(4)
         }
         .padding()
         .background(Color(.windowBackgroundColor))

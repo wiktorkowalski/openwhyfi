@@ -32,6 +32,7 @@
 		A1000026FFFFFFFF00000026 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1100026FFFFFFFF00000026 /* AppSettings.swift */; };
 		A1000027FFFFFFFF00000027 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1100027FFFFFFFF00000027 /* PreferencesView.swift */; };
 		A1000028FFFFFFFF00000028 /* SignalChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1100028FFFFFFFF00000028 /* SignalChartView.swift */; };
+		A1000029FFFFFFFF00000029 /* NetworkHealthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1100029FFFFFFFF00000029 /* NetworkHealthView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		A1100026FFFFFFFF00000026 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		A1100027FFFFFFFF00000027 /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
 		A1100028FFFFFFFF00000028 /* SignalChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalChartView.swift; sourceTree = "<group>"; };
+		A1100029FFFFFFFF00000029 /* NetworkHealthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHealthView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 				A1100025FFFFFFFF00000025 /* SuggestionsView.swift */,
 				A1100027FFFFFFFF00000027 /* PreferencesView.swift */,
 				A1100028FFFFFFFF00000028 /* SignalChartView.swift */,
+				A1100029FFFFFFFF00000029 /* NetworkHealthView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 				A1000026FFFFFFFF00000026 /* AppSettings.swift in Sources */,
 				A1000027FFFFFFFF00000027 /* PreferencesView.swift in Sources */,
 				A1000028FFFFFFFF00000028 /* SignalChartView.swift in Sources */,
+				A1000029FFFFFFFF00000029 /* NetworkHealthView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,7 +403,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.4.0;
+				MARKETING_VERSION = 0.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.openwhyfi.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -426,7 +430,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 0.4.0;
+				MARKETING_VERSION = 0.5.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.openwhyfi.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

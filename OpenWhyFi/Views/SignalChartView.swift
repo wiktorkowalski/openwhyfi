@@ -54,18 +54,18 @@ struct SignalChartView: View {
                 }
             }
             .chartXAxis(.hidden)
-            .frame(height: 100)
+            .frame(height: 70)
 
-            HStack(spacing: 16) {
-                StatLabel(title: "Min", value: minRssi.map { "\($0)" } ?? "—")
-                StatLabel(title: "Max", value: maxRssi.map { "\($0)" } ?? "—")
-                StatLabel(title: "Avg", value: avgRssi.map { String(format: "%.0f", $0) } ?? "—")
+            HStack(spacing: 12) {
+                Text("Min \(minRssi.map { "\($0)" } ?? "—")")
+                Text("Max \(maxRssi.map { "\($0)" } ?? "—")")
+                Text("Avg \(avgRssi.map { String(format: "%.0f", $0) } ?? "—")")
                 Spacer()
                 Text("\(points.count) samples")
-                    .font(.caption2)
-                    .foregroundStyle(.secondary)
-                    .monospacedDigit()
             }
+            .font(.caption2)
+            .foregroundStyle(.secondary)
+            .monospacedDigit()
         }
         .padding()
         .background(Color(.windowBackgroundColor))

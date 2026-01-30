@@ -37,6 +37,14 @@ class NetworkMonitor {
         )
     }
 
+    var hasLocationPermission: Bool {
+        get async { await wifiMonitor.hasLocationPermission }
+    }
+
+    func requestLocationPermission() async {
+        await wifiMonitor.requestLocationPermission()
+    }
+
     init() {
         startAutoRefresh()
     }
@@ -77,6 +85,9 @@ class NetworkMonitor {
             dnsResult: dns,
             gatewayIP: gateway
         )
+
+        // Record DNS metrics
+        metrics.recordDNS(dns.success ? dns.queryTime : nil)
 
         // Record metrics
         metrics.record(

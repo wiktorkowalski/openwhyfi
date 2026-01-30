@@ -4,9 +4,14 @@ import CoreLocation
 
 actor WiFiMonitor {
     private let wifiClient = CWWiFiClient.shared()
-    private let locationManager = CLLocationManager()
+    nonisolated let locationManager = CLLocationManager()
 
-    init() {
+    var hasLocationPermission: Bool {
+        let status = locationManager.authorizationStatus
+        return status == .authorizedAlways || status == .authorized
+    }
+
+    func requestLocationPermission() {
         Task { @MainActor in
             locationManager.requestWhenInUseAuthorization()
         }
@@ -17,15 +22,24 @@ actor WiFiMonitor {
             return .disconnected
         }
 
-        guard let ssid = interface.ssid() else {
+        let rssi = interface.rssiValue()
+
+        // If RSSI is 0, likely not connected
+        if rssi == 0 {
             return .disconnected
         }
 
-        let rssi = interface.rssiValue()
+        let ssid: String
+        if hasLocationPermission, let name = interface.ssid() {
+            ssid = name
+        } else {
+            ssid = "Wi-Fi Network"
+        }
+
         let noise = interface.noiseMeasurement()
         let channel = interface.wlanChannel()?.channelNumber ?? 0
         let transmitRate = interface.transmitRate()
-        let bssid = interface.bssid() ?? ""
+        let bssid = hasLocationPermission ? (interface.bssid() ?? "") : ""
 
         return WiFiInfo(
             ssid: ssid,
