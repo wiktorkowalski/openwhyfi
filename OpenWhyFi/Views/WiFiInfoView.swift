@@ -1,0 +1,108 @@
+import SwiftUI
+
+struct WiFiInfoView: View {
+    let info: WiFiInfo
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Image(systemName: wifiIcon)
+                    .font(.title2)
+                    .foregroundStyle(signalColor)
+                Text(info.ssid)
+                    .font(.headline)
+                Spacer()
+                Text(info.band.rawValue)
+                    .font(.caption)
+                    .padding(.horizontal, 6)
+                    .padding(.vertical, 2)
+                    .background(Color.secondary.opacity(0.2))
+                    .cornerRadius(4)
+            }
+
+            HStack(spacing: 16) {
+                MetricBadge(
+                    label: "Signal",
+                    value: "\(info.rssi) dBm",
+                    quality: info.signalQuality.color
+                )
+                MetricBadge(
+                    label: "SNR",
+                    value: "\(info.snr) dB",
+                    quality: snrQuality
+                )
+                MetricBadge(
+                    label: "Channel",
+                    value: "\(info.channel)",
+                    quality: "blue"
+                )
+            }
+
+            if info.transmitRate > 0 {
+                Text("TX Rate: \(Int(info.transmitRate)) Mbps")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+            }
+        }
+        .padding()
+        .background(Color(.windowBackgroundColor))
+        .cornerRadius(8)
+    }
+
+    private var wifiIcon: String {
+        switch info.signalQuality {
+        case .excellent, .good: return "wifi"
+        case .fair: return "wifi"
+        case .poor: return "wifi.exclamationmark"
+        case .none: return "wifi.slash"
+        }
+    }
+
+    private var signalColor: Color {
+        switch info.signalQuality.color {
+        case "green": return .green
+        case "yellow": return .orange
+        case "red": return .red
+        default: return .secondary
+        }
+    }
+
+    private var snrQuality: String {
+        switch info.snr {
+        case 25...: return "green"
+        case 15..<25: return "yellow"
+        default: return "red"
+        }
+    }
+}
+
+struct MetricBadge: View {
+    let label: String
+    let value: String
+    let quality: String
+
+    var body: some View {
+        VStack(spacing: 2) {
+            Text(label)
+                .font(.caption2)
+                .foregroundStyle(.secondary)
+            Text(value)
+                .font(.caption)
+                .fontWeight(.medium)
+        }
+        .padding(.horizontal, 8)
+        .padding(.vertical, 4)
+        .background(qualityColor.opacity(0.15))
+        .cornerRadius(6)
+    }
+
+    private var qualityColor: Color {
+        switch quality {
+        case "green": return .green
+        case "yellow": return .orange
+        case "red": return .red
+        case "blue": return .blue
+        default: return .secondary
+        }
+    }
+}

@@ -1,0 +1,429 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A1000001FFFFFFFF00000001 /* OpenWhyFiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1100001FFFFFFFF00000001 /* OpenWhyFiApp.swift */; };
+		A1000002FFFFFFFF00000002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1100002FFFFFFFF00000002 /* AppDelegate.swift */; };
+		A1000003FFFFFFFF00000003 /* PopoverContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1100003FFFFFFFF00000003 /* PopoverContentView.swift */; };
+		A1000004FFFFFFFF00000004 /* WiFiInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1100004FFFFFFFF00000004 /* WiFiInfoView.swift */; };
+		A1000005FFFFFFFF00000005 /* NetworkStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1100005FFFFFFFF00000005 /* NetworkStatusView.swift */; };
+		A1000006FFFFFFFF00000006 /* MetricsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1100006FFFFFFFF00000006 /* MetricsView.swift */; };
+		A1000007FFFFFFFF00000007 /* SparklineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1100007FFFFFFFF00000007 /* SparklineView.swift */; };
+		A1000008FFFFFFFF00000008 /* WiFiInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1100008FFFFFFFF00000008 /* WiFiInfo.swift */; };
+		A1000009FFFFFFFF00000009 /* NetworkStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1100009FFFFFFFF00000009 /* NetworkStatus.swift */; };
+		A100000AFFFFFFFF0000000A /* NetworkMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = A110000AFFFFFFFF0000000A /* NetworkMetrics.swift */; };
+		A100000BFFFFFFFF0000000B /* CircularBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A110000BFFFFFFFF0000000B /* CircularBuffer.swift */; };
+		A100000CFFFFFFFF0000000C /* WiFiMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A110000CFFFFFFFF0000000C /* WiFiMonitor.swift */; };
+		A100000DFFFFFFFF0000000D /* PingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A110000DFFFFFFFF0000000D /* PingService.swift */; };
+		A100000EFFFFFFFF0000000E /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A110000EFFFFFFFF0000000E /* NetworkMonitor.swift */; };
+		A100000FFFFFFFFF0000000F /* ShellExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A110000FFFFFFFFF0000000F /* ShellExecutor.swift */; };
+		A1000010FFFFFFFF00000010 /* GatewayFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1100010FFFFFFFF00000010 /* GatewayFinder.swift */; };
+		A1000020FFFFFFFF00000020 /* CoreWLAN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1100020FFFFFFFF00000020 /* CoreWLAN.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A1100001FFFFFFFF00000001 /* OpenWhyFiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpenWhyFiApp.swift; sourceTree = "<group>"; };
+		A1100002FFFFFFFF00000002 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A1100003FFFFFFFF00000003 /* PopoverContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverContentView.swift; sourceTree = "<group>"; };
+		A1100004FFFFFFFF00000004 /* WiFiInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiInfoView.swift; sourceTree = "<group>"; };
+		A1100005FFFFFFFF00000005 /* NetworkStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatusView.swift; sourceTree = "<group>"; };
+		A1100006FFFFFFFF00000006 /* MetricsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetricsView.swift; sourceTree = "<group>"; };
+		A1100007FFFFFFFF00000007 /* SparklineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SparklineView.swift; sourceTree = "<group>"; };
+		A1100008FFFFFFFF00000008 /* WiFiInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiInfo.swift; sourceTree = "<group>"; };
+		A1100009FFFFFFFF00000009 /* NetworkStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkStatus.swift; sourceTree = "<group>"; };
+		A110000AFFFFFFFF0000000A /* NetworkMetrics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMetrics.swift; sourceTree = "<group>"; };
+		A110000BFFFFFFFF0000000B /* CircularBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularBuffer.swift; sourceTree = "<group>"; };
+		A110000CFFFFFFFF0000000C /* WiFiMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WiFiMonitor.swift; sourceTree = "<group>"; };
+		A110000DFFFFFFFF0000000D /* PingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PingService.swift; sourceTree = "<group>"; };
+		A110000EFFFFFFFF0000000E /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		A110000FFFFFFFFF0000000F /* ShellExecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShellExecutor.swift; sourceTree = "<group>"; };
+		A1100010FFFFFFFF00000010 /* GatewayFinder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GatewayFinder.swift; sourceTree = "<group>"; };
+		A1100011FFFFFFFF00000011 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A1100020FFFFFFFF00000020 /* CoreWLAN.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreWLAN.framework; path = System/Library/Frameworks/CoreWLAN.framework; sourceTree = SDKROOT; };
+		A1200000FFFFFFFF00000000 /* OpenWhyFi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenWhyFi.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1300000FFFFFFFF00000000 /* OpenWhyFi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OpenWhyFi.entitlements; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A1400000FFFFFFFF00000000 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1000020FFFFFFFF00000020 /* CoreWLAN.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A1500000FFFFFFFF00000000 = {
+			isa = PBXGroup;
+			children = (
+				A1500001FFFFFFFF00000001 /* OpenWhyFi */,
+				A1500002FFFFFFFF00000002 /* Products */,
+				A1500003FFFFFFFF00000003 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		A1500001FFFFFFFF00000001 /* OpenWhyFi */ = {
+			isa = PBXGroup;
+			children = (
+				A1100001FFFFFFFF00000001 /* OpenWhyFiApp.swift */,
+				A1100002FFFFFFFF00000002 /* AppDelegate.swift */,
+				A1500004FFFFFFFF00000004 /* Views */,
+				A1500005FFFFFFFF00000005 /* Models */,
+				A1500006FFFFFFFF00000006 /* Services */,
+				A1500007FFFFFFFF00000007 /* Utilities */,
+				A1500008FFFFFFFF00000008 /* Resources */,
+				A1300000FFFFFFFF00000000 /* OpenWhyFi.entitlements */,
+				A1100011FFFFFFFF00000011 /* Info.plist */,
+			);
+			path = OpenWhyFi;
+			sourceTree = "<group>";
+		};
+		A1500002FFFFFFFF00000002 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A1200000FFFFFFFF00000000 /* OpenWhyFi.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A1500003FFFFFFFF00000003 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A1100020FFFFFFFF00000020 /* CoreWLAN.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A1500004FFFFFFFF00000004 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A1100003FFFFFFFF00000003 /* PopoverContentView.swift */,
+				A1100004FFFFFFFF00000004 /* WiFiInfoView.swift */,
+				A1100005FFFFFFFF00000005 /* NetworkStatusView.swift */,
+				A1100006FFFFFFFF00000006 /* MetricsView.swift */,
+				A1100007FFFFFFFF00000007 /* SparklineView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A1500005FFFFFFFF00000005 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A1100008FFFFFFFF00000008 /* WiFiInfo.swift */,
+				A1100009FFFFFFFF00000009 /* NetworkStatus.swift */,
+				A110000AFFFFFFFF0000000A /* NetworkMetrics.swift */,
+				A110000BFFFFFFFF0000000B /* CircularBuffer.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A1500006FFFFFFFF00000006 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A110000CFFFFFFFF0000000C /* WiFiMonitor.swift */,
+				A110000DFFFFFFFF0000000D /* PingService.swift */,
+				A110000EFFFFFFFF0000000E /* NetworkMonitor.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A1500007FFFFFFFF00000007 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				A110000FFFFFFFFF0000000F /* ShellExecutor.swift */,
+				A1100010FFFFFFFF00000010 /* GatewayFinder.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		A1500008FFFFFFFF00000008 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A1600000FFFFFFFF00000000 /* OpenWhyFi */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1800000FFFFFFFF00000000 /* Build configuration list for PBXNativeTarget "OpenWhyFi" */;
+			buildPhases = (
+				A1700000FFFFFFFF00000000 /* Sources */,
+				A1400000FFFFFFFF00000000 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OpenWhyFi;
+			productName = OpenWhyFi;
+			productReference = A1200000FFFFFFFF00000000 /* OpenWhyFi.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A1900000FFFFFFFF00000000 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					A1600000FFFFFFFF00000000 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = A1A00000FFFFFFFF00000000 /* Build configuration list for PBXProject "OpenWhyFi" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A1500000FFFFFFFF00000000;
+			productRefGroup = A1500002FFFFFFFF00000002 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A1600000FFFFFFFF00000000 /* OpenWhyFi */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A1700000FFFFFFFF00000000 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1000001FFFFFFFF00000001 /* OpenWhyFiApp.swift in Sources */,
+				A1000002FFFFFFFF00000002 /* AppDelegate.swift in Sources */,
+				A1000003FFFFFFFF00000003 /* PopoverContentView.swift in Sources */,
+				A1000004FFFFFFFF00000004 /* WiFiInfoView.swift in Sources */,
+				A1000005FFFFFFFF00000005 /* NetworkStatusView.swift in Sources */,
+				A1000006FFFFFFFF00000006 /* MetricsView.swift in Sources */,
+				A1000007FFFFFFFF00000007 /* SparklineView.swift in Sources */,
+				A1000008FFFFFFFF00000008 /* WiFiInfo.swift in Sources */,
+				A1000009FFFFFFFF00000009 /* NetworkStatus.swift in Sources */,
+				A100000AFFFFFFFF0000000A /* NetworkMetrics.swift in Sources */,
+				A100000BFFFFFFFF0000000B /* CircularBuffer.swift in Sources */,
+				A100000CFFFFFFFF0000000C /* WiFiMonitor.swift in Sources */,
+				A100000DFFFFFFFF0000000D /* PingService.swift in Sources */,
+				A100000EFFFFFFFF0000000E /* NetworkMonitor.swift in Sources */,
+				A100000FFFFFFFFF0000000F /* ShellExecutor.swift in Sources */,
+				A1000010FFFFFFFF00000010 /* GatewayFinder.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A1B00000FFFFFFFF00000000 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A1B00001FFFFFFFF00000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		A1B00002FFFFFFFF00000002 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = OpenWhyFi/OpenWhyFi.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = OpenWhyFi/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.openwhyfi.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		A1B00003FFFFFFFF00000003 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = OpenWhyFi/OpenWhyFi.entitlements;
+				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = OpenWhyFi/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.openwhyfi.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A1800000FFFFFFFF00000000 /* Build configuration list for PBXNativeTarget "OpenWhyFi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1B00002FFFFFFFF00000002 /* Debug */,
+				A1B00003FFFFFFFF00000003 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A1A00000FFFFFFFF00000000 /* Build configuration list for PBXProject "OpenWhyFi" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1B00000FFFFFFFF00000000 /* Debug */,
+				A1B00001FFFFFFFF00000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A1900000FFFFFFFF00000000 /* Project object */;
+}
