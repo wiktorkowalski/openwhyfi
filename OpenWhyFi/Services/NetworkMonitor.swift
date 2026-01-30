@@ -6,7 +6,7 @@ import Combine
 class NetworkMonitor {
     private(set) var wifiInfo: WiFiInfo = .disconnected
     private(set) var networkStatus: NetworkStatus = .unknown
-    private(set) var metrics = NetworkMetrics()
+    private(set) var metrics = NetworkMetrics(capacity: AppSettings.shared.historyCapacity)
     private(set) var isRefreshing = false
     private(set) var lastUpdate: Date?
     private(set) var speedTestResult: SpeedTestResult?

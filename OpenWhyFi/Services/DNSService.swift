@@ -10,10 +10,15 @@ struct DNSResult: Equatable {
 
 actor DNSService {
     static let shared = DNSService()
-    static let testDomain = "apple.com"
+
+    @MainActor
+    static var testDomain: String { AppSettings.shared.dnsTestDomain }
 
     func measureDNS(server: String? = nil) async -> DNSResult {
-        var args = ["+noall", "+stats", DNSService.testDomain]
+        let domain = await MainActor.run { AppSettings.shared.dnsTestDomain }
+        let timeout = await MainActor.run { Double(AppSettings.shared.dnsTimeout) }
+
+        var args = ["+noall", "+stats", domain]
 
         if let server = server {
             args.insert("@\(server)", at: 0)
@@ -22,7 +27,7 @@ actor DNSService {
         let result = await ShellExecutor.shared.executeWithStatus(
             "/usr/bin/dig",
             arguments: args,
-            timeout: 5
+            timeout: timeout
         )
 
         guard result.exitCode == 0 else {

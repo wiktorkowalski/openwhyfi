@@ -50,10 +50,11 @@ actor SpeedTestService {
         isRunning = true
         defer { isRunning = false }
 
+        let timeout = await MainActor.run { Double(AppSettings.shared.speedTestTimeout) }
         let result = await ShellExecutor.shared.executeWithStatus(
             "/usr/bin/networkQuality",
             arguments: ["-s", "-c"],
-            timeout: 120
+            timeout: timeout
         )
 
         guard result.exitCode == 0 else {

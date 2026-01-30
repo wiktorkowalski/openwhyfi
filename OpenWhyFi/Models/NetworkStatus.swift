@@ -27,49 +27,49 @@ enum LatencyQuality: String {
     case fair = "Fair"
     case poor = "Poor"
 
+    @MainActor
     static func forRouter(_ ms: Double) -> LatencyQuality {
-        switch ms {
-        case 0..<5: return .excellent
-        case 5..<20: return .good
-        case 20..<50: return .fair
-        default: return .poor
-        }
+        let s = AppSettings.shared
+        if ms < s.routerExcellent { return .excellent }
+        if ms < s.routerGood { return .good }
+        if ms < s.routerFair { return .fair }
+        return .poor
     }
 
+    @MainActor
     static func forInternet(_ ms: Double) -> LatencyQuality {
-        switch ms {
-        case 0..<30: return .excellent
-        case 30..<60: return .good
-        case 60..<100: return .fair
-        default: return .poor
-        }
+        let s = AppSettings.shared
+        if ms < s.internetExcellent { return .excellent }
+        if ms < s.internetGood { return .good }
+        if ms < s.internetFair { return .fair }
+        return .poor
     }
 
+    @MainActor
     static func forDNS(_ ms: Double) -> LatencyQuality {
-        switch ms {
-        case 0..<20: return .excellent
-        case 20..<50: return .good
-        case 50..<100: return .fair
-        default: return .poor
-        }
+        let s = AppSettings.shared
+        if ms < s.dnsExcellent { return .excellent }
+        if ms < s.dnsGood { return .good }
+        if ms < s.dnsFair { return .fair }
+        return .poor
     }
 
+    @MainActor
     static func forJitter(_ ms: Double) -> LatencyQuality {
-        switch ms {
-        case 0..<10: return .excellent
-        case 10..<30: return .good
-        case 30..<50: return .fair
-        default: return .poor
-        }
+        let s = AppSettings.shared
+        if ms < s.jitterExcellent { return .excellent }
+        if ms < s.jitterGood { return .good }
+        if ms < s.jitterFair { return .fair }
+        return .poor
     }
 
+    @MainActor
     static func forLoss(_ percent: Double) -> LatencyQuality {
-        switch percent {
-        case 0: return .excellent
-        case 0..<1: return .good
-        case 1..<3: return .fair
-        default: return .poor
-        }
+        let s = AppSettings.shared
+        if percent <= s.lossExcellent { return .excellent }
+        if percent < s.lossGood { return .good }
+        if percent < s.lossFair { return .fair }
+        return .poor
     }
 
     var color: String {

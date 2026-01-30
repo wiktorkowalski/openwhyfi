@@ -19,6 +19,7 @@ struct Suggestion: Identifiable, Equatable {
 }
 
 struct SuggestionEngine {
+    @MainActor
     static func analyze(
         wifiInfo: WiFiInfo,
         status: NetworkStatus,
@@ -26,6 +27,7 @@ struct SuggestionEngine {
         speedTest: SpeedTestResult?
     ) -> [Suggestion] {
         var suggestions: [Suggestion] = []
+        let s = AppSettings.shared
 
         // Wi-Fi signal issues
         if wifiInfo.ssid != "Not Connected" {
@@ -56,7 +58,7 @@ struct SuggestionEngine {
                 detail: "Check Wi-Fi connection or restart router",
                 severity: .critical
             ))
-        } else if case .success(let ms) = status.routerPing, ms > 20 {
+        } else if case .success(let ms) = status.routerPing, ms > s.routerGood {
             suggestions.append(Suggestion(
                 icon: "tortoise.fill",
                 title: "High router latency",
@@ -75,7 +77,7 @@ struct SuggestionEngine {
                     severity: .critical
                 ))
             }
-        } else if case .success(let ms) = status.internetPing, ms > 100 {
+        } else if case .success(let ms) = status.internetPing, ms > s.internetFair {
             suggestions.append(Suggestion(
                 icon: "clock.fill",
                 title: "High internet latency",
@@ -92,7 +94,7 @@ struct SuggestionEngine {
                 detail: "Try switching to 8.8.8.8 or 1.1.1.1",
                 severity: .warning
             ))
-        } else if status.dnsResult.queryTime > 100 {
+        } else if status.dnsResult.queryTime > s.dnsFair {
             suggestions.append(Suggestion(
                 icon: "magnifyingglass",
                 title: "Slow DNS resolution",
@@ -102,7 +104,7 @@ struct SuggestionEngine {
         }
 
         // Packet loss
-        if metrics.routerLossPercent > 3 {
+        if metrics.routerLossPercent > s.lossFair {
             suggestions.append(Suggestion(
                 icon: "exclamationmark.triangle.fill",
                 title: "High packet loss (\(Int(metrics.routerLossPercent))%)",
@@ -112,7 +114,7 @@ struct SuggestionEngine {
         }
 
         // Jitter
-        if let jitter = metrics.routerJitter, jitter > 30 {
+        if let jitter = metrics.routerJitter, jitter > s.jitterGood {
             suggestions.append(Suggestion(
                 icon: "waveform.path",
                 title: "High jitter (\(Int(jitter))ms)",

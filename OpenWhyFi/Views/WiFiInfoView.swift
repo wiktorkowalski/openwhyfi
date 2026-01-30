@@ -40,8 +40,12 @@ struct WiFiInfoView: View {
         .cornerRadius(8)
     }
 
+    private var quality: SignalQuality {
+        SignalQuality.fromSettings(rssi: info.rssi)
+    }
+
     private var wifiIcon: String {
-        switch info.signalQuality {
+        switch quality {
         case .excellent, .good: return "wifi"
         case .fair: return "wifi"
         case .poor: return "wifi.exclamationmark"
@@ -50,7 +54,7 @@ struct WiFiInfoView: View {
     }
 
     private var signalColor: Color {
-        switch info.signalQuality.color {
+        switch quality.color {
         case "green": return .green
         case "yellow": return .orange
         case "red": return .red

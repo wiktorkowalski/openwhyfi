@@ -2,13 +2,24 @@ import Foundation
 
 actor PingService {
     static let shared = PingService()
-    static let internetTarget = "8.8.8.8"
 
-    func ping(host: String, count: Int = 1, timeout: Double = 5) async -> PingStatus {
+    @MainActor
+    static var internetTarget: String { AppSettings.shared.pingTarget }
+
+    @MainActor
+    static var defaultTimeout: Double { Double(AppSettings.shared.pingTimeout) }
+
+    func ping(host: String, count: Int = 1, timeout: Double? = nil) async -> PingStatus {
+        let actualTimeout: Double
+        if let t = timeout {
+            actualTimeout = t
+        } else {
+            actualTimeout = await MainActor.run { Double(AppSettings.shared.pingTimeout) }
+        }
         let result = await ShellExecutor.shared.executeWithStatus(
             "/sbin/ping",
-            arguments: ["-c", "\(count)", "-t", "\(Int(timeout))", host],
-            timeout: timeout + 2
+            arguments: ["-c", "\(count)", "-t", "\(Int(actualTimeout))", host],
+            timeout: actualTimeout + 2
         )
 
         if result.exitCode == 0 {

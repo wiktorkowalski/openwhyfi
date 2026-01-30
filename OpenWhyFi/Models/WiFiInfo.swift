@@ -7,14 +7,18 @@ enum SignalQuality: String {
     case poor = "Poor"
     case none = "No Signal"
 
-    static func from(rssi: Int) -> SignalQuality {
-        switch rssi {
-        case -50...0: return .excellent
-        case -60...(-51): return .good
-        case -70...(-61): return .fair
-        case ..<(-70): return .poor
-        default: return .none
-        }
+    static func from(rssi: Int, excellent: Int = -50, good: Int = -60, fair: Int = -70) -> SignalQuality {
+        if rssi >= excellent { return .excellent }
+        if rssi >= good { return .good }
+        if rssi >= fair { return .fair }
+        if rssi < fair { return .poor }
+        return .none
+    }
+
+    @MainActor
+    static func fromSettings(rssi: Int) -> SignalQuality {
+        let s = AppSettings.shared
+        return from(rssi: rssi, excellent: s.signalExcellent, good: s.signalGood, fair: s.signalFair)
     }
 
     var color: String {

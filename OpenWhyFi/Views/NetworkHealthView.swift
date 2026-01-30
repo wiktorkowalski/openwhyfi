@@ -137,17 +137,18 @@ struct StatusPill: View {
     }
 
     private var statusColor: Color {
+        let s = AppSettings.shared
         if let dns = dns {
             if !dns.success { return .red }
-            return dns.queryTime < 50 ? .green : (dns.queryTime < 100 ? .orange : .red)
+            return dns.queryTime < s.dnsGood ? .green : (dns.queryTime < s.dnsFair ? .orange : .red)
         }
         if let ping = ping {
             switch ping {
             case .success(let ms):
                 if label == "Router" {
-                    return ms < 10 ? .green : (ms < 30 ? .orange : .red)
+                    return ms < s.routerGood ? .green : (ms < s.routerFair ? .orange : .red)
                 } else {
-                    return ms < 50 ? .green : (ms < 100 ? .orange : .red)
+                    return ms < s.internetGood ? .green : (ms < s.internetFair ? .orange : .red)
                 }
             case .timeout, .error: return .red
             case .unknown: return .secondary
