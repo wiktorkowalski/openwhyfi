@@ -12,6 +12,11 @@ struct NetworkMetrics {
     var internetHistory: CircularBuffer<Double>
     var latencyPoints: CircularBuffer<LatencyPoint>
 
+    private var routerAttempts: Int = 0
+    private var routerSuccesses: Int = 0
+    private var internetAttempts: Int = 0
+    private var internetSuccesses: Int = 0
+
     init(capacity: Int = 60) {
         routerHistory = CircularBuffer(capacity: capacity)
         internetHistory = CircularBuffer(capacity: capacity)
@@ -26,11 +31,18 @@ struct NetworkMetrics {
         )
         latencyPoints.append(point)
 
+        // Track router
+        routerAttempts += 1
         if let r = router {
             routerHistory.append(r)
+            routerSuccesses += 1
         }
+
+        // Track internet
+        internetAttempts += 1
         if let i = internet {
             internetHistory.append(i)
+            internetSuccesses += 1
         }
     }
 
@@ -52,6 +64,16 @@ struct NetworkMetrics {
         let elements = internetHistory.elements
         guard !elements.isEmpty else { return nil }
         return elements.reduce(0, +) / Double(elements.count)
+    }
+
+    var routerLossPercent: Double {
+        guard routerAttempts > 0 else { return 0 }
+        return Double(routerAttempts - routerSuccesses) / Double(routerAttempts) * 100
+    }
+
+    var internetLossPercent: Double {
+        guard internetAttempts > 0 else { return 0 }
+        return Double(internetAttempts - internetSuccesses) / Double(internetAttempts) * 100
     }
 
     private func calculateJitter(from values: [Double]) -> Double? {

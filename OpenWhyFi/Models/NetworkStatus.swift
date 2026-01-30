@@ -45,6 +45,33 @@ enum LatencyQuality: String {
         }
     }
 
+    static func forDNS(_ ms: Double) -> LatencyQuality {
+        switch ms {
+        case 0..<20: return .excellent
+        case 20..<50: return .good
+        case 50..<100: return .fair
+        default: return .poor
+        }
+    }
+
+    static func forJitter(_ ms: Double) -> LatencyQuality {
+        switch ms {
+        case 0..<10: return .excellent
+        case 10..<30: return .good
+        case 30..<50: return .fair
+        default: return .poor
+        }
+    }
+
+    static func forLoss(_ percent: Double) -> LatencyQuality {
+        switch percent {
+        case 0: return .excellent
+        case 0..<1: return .good
+        case 1..<3: return .fair
+        default: return .poor
+        }
+    }
+
     var color: String {
         switch self {
         case .excellent, .good: return "green"
@@ -57,11 +84,13 @@ enum LatencyQuality: String {
 struct NetworkStatus: Equatable {
     let routerPing: PingStatus
     let internetPing: PingStatus
+    let dnsResult: DNSResult
     let gatewayIP: String?
 
     static let unknown = NetworkStatus(
         routerPing: .unknown,
         internetPing: .unknown,
+        dnsResult: .unknown,
         gatewayIP: nil
     )
 }

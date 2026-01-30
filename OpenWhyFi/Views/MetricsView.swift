@@ -11,14 +11,16 @@ struct MetricsView: View {
 
             HStack(spacing: 16) {
                 StatBox(
-                    title: "Router Avg",
+                    title: "Router",
                     value: formatMs(metrics.routerAverage),
-                    subtitle: "Jitter: \(formatMs(metrics.routerJitter))"
+                    jitter: metrics.routerJitter,
+                    loss: metrics.routerLossPercent
                 )
                 StatBox(
-                    title: "Internet Avg",
+                    title: "Internet",
                     value: formatMs(metrics.internetAverage),
-                    subtitle: "Jitter: \(formatMs(metrics.internetJitter))"
+                    jitter: metrics.internetJitter,
+                    loss: metrics.internetLossPercent
                 )
             }
 
@@ -41,7 +43,8 @@ struct MetricsView: View {
 struct StatBox: View {
     let title: String
     let value: String
-    let subtitle: String
+    let jitter: Double?
+    let loss: Double
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -51,11 +54,37 @@ struct StatBox: View {
             Text(value)
                 .font(.headline)
                 .monospacedDigit()
-            Text(subtitle)
-                .font(.caption2)
-                .monospacedDigit()
-                .foregroundStyle(.secondary)
+            HStack(spacing: 8) {
+                Text("J: \(formatJitter)")
+                    .foregroundStyle(jitterColor)
+                Text("L: \(String(format: "%.0f%%", loss))")
+                    .foregroundStyle(lossColor)
+            }
+            .font(.caption2)
+            .monospacedDigit()
         }
         .frame(maxWidth: .infinity, alignment: .leading)
+    }
+
+    private var formatJitter: String {
+        guard let j = jitter else { return "—" }
+        return String(format: "%.1f", j)
+    }
+
+    private var jitterColor: Color {
+        guard let j = jitter else { return .secondary }
+        return colorFor(LatencyQuality.forJitter(j))
+    }
+
+    private var lossColor: Color {
+        colorFor(LatencyQuality.forLoss(loss))
+    }
+
+    private func colorFor(_ quality: LatencyQuality) -> Color {
+        switch quality {
+        case .excellent, .good: return .green
+        case .fair: return .orange
+        case .poor: return .red
+        }
     }
 }

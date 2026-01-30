@@ -24,6 +24,7 @@
 		A100000FFFFFFFFF0000000F /* ShellExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A110000FFFFFFFFF0000000F /* ShellExecutor.swift */; };
 		A1000010FFFFFFFF00000010 /* GatewayFinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1100010FFFFFFFF00000010 /* GatewayFinder.swift */; };
 		A1000020FFFFFFFF00000020 /* CoreWLAN.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1100020FFFFFFFF00000020 /* CoreWLAN.framework */; };
+		A1000021FFFFFFFF00000021 /* DNSService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1100021FFFFFFFF00000021 /* DNSService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		A1100020FFFFFFFF00000020 /* CoreWLAN.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreWLAN.framework; path = System/Library/Frameworks/CoreWLAN.framework; sourceTree = SDKROOT; };
 		A1200000FFFFFFFF00000000 /* OpenWhyFi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenWhyFi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1300000FFFFFFFF00000000 /* OpenWhyFi.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OpenWhyFi.entitlements; sourceTree = "<group>"; };
+		A1100021FFFFFFFF00000021 /* DNSService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DNSService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +133,7 @@
 				A110000CFFFFFFFF0000000C /* WiFiMonitor.swift */,
 				A110000DFFFFFFFF0000000D /* PingService.swift */,
 				A110000EFFFFFFFF0000000E /* NetworkMonitor.swift */,
+				A1100021FFFFFFFF00000021 /* DNSService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -224,6 +227,7 @@
 				A100000EFFFFFFFF0000000E /* NetworkMonitor.swift in Sources */,
 				A100000FFFFFFFFF0000000F /* ShellExecutor.swift in Sources */,
 				A1000010FFFFFFFF00000010 /* GatewayFinder.swift in Sources */,
+				A1000021FFFFFFFF00000021 /* DNSService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

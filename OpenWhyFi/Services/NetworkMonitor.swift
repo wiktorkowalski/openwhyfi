@@ -42,16 +42,19 @@ class NetworkMonitor {
         // Get gateway
         let gateway = await GatewayFinder.shared.findDefaultGateway()
 
-        // Ping router and internet in parallel
+        // Ping router, internet, and DNS in parallel
         async let routerPingResult = pingRouter(gateway: gateway)
         async let internetPingResult = PingService.shared.ping(host: PingService.internetTarget)
+        async let dnsResult = DNSService.shared.measureDNS()
 
         let routerPing = await routerPingResult
         let internetPing = await internetPingResult
+        let dns = await dnsResult
 
         networkStatus = NetworkStatus(
             routerPing: routerPing,
             internetPing: internetPing,
+            dnsResult: dns,
             gatewayIP: gateway
         )
 
