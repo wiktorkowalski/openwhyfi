@@ -2,6 +2,7 @@ import SwiftUI
 
 struct PopoverContentView: View {
     var monitor: NetworkMonitor
+    var settings = AppSettings.shared
     @State private var showingPreferences = false
 
     var body: some View {
@@ -9,39 +10,50 @@ struct PopoverContentView: View {
             header
 
             VStack(spacing: 12) {
-                WiFiInfoView(info: monitor.wifiInfo)
-                NetworkStatusView(status: monitor.networkStatus)
-                SparklineView(
-                    points: monitor.routerLatencyPoints,
-                    title: "Latency History"
-                )
-                MetricsView(metrics: monitor.metrics)
-                SpeedTestView(
-                    result: Binding(
-                        get: { monitor.speedTestResult },
-                        set: { _ in }
-                    ),
-                    isRunning: Binding(
-                        get: { monitor.isRunningSpeedTest },
-                        set: { _ in }
-                    ),
-                    onRunTest: {
-                        Task {
-                            await monitor.runSpeedTest()
+                if settings.showWiFiInfo {
+                    WiFiInfoView(info: monitor.wifiInfo)
+                }
+                if settings.showConnectionStatus {
+                    NetworkStatusView(status: monitor.networkStatus)
+                }
+                if settings.showLatencyHistory {
+                    SparklineView(
+                        points: monitor.routerLatencyPoints,
+                        title: "Latency History"
+                    )
+                }
+                if settings.showStatistics {
+                    MetricsView(metrics: monitor.metrics)
+                }
+                if settings.showSpeedTest {
+                    SpeedTestView(
+                        result: Binding(
+                            get: { monitor.speedTestResult },
+                            set: { _ in }
+                        ),
+                        isRunning: Binding(
+                            get: { monitor.isRunningSpeedTest },
+                            set: { _ in }
+                        ),
+                        onRunTest: {
+                            Task {
+                                await monitor.runSpeedTest()
+                            }
                         }
-                    }
-                )
-                SuggestionsView(suggestions: monitor.suggestions)
+                    )
+                }
+                if settings.showSuggestions {
+                    SuggestionsView(suggestions: monitor.suggestions)
+                }
             }
             .padding(.horizontal)
-
-            Spacer()
 
             footer
         }
         .padding(.top, 20)
         .padding(.bottom, 12)
-        .frame(width: 320, height: 820)
+        .frame(width: 320)
+        .fixedSize(horizontal: false, vertical: true)
     }
 
     private var header: some View {
