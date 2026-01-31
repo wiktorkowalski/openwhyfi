@@ -58,10 +58,22 @@ actor SpeedTestService {
         )
 
         guard result.exitCode == 0 else {
+            let errorMessage: String
+            if let error = result.error {
+                if error.contains("timed out") {
+                    errorMessage = "Test timed out - check connection"
+                } else if error.contains("network") || error.contains("Network") {
+                    errorMessage = "Network unavailable"
+                } else {
+                    errorMessage = error
+                }
+            } else {
+                errorMessage = "Speed test failed (code \(result.exitCode))"
+            }
             return SpeedTestResult(
                 downloadMbps: 0, uploadMbps: 0, responsiveness: 0,
                 idleLatency: 0, downloadLatency: 0, uploadLatency: 0,
-                isRunning: false, error: "Speed test failed"
+                isRunning: false, error: errorMessage
             )
         }
 
@@ -80,7 +92,6 @@ actor SpeedTestService {
 
         let dlThroughput = dict["dl_throughput"] as? Double ?? 0
         let ulThroughput = dict["ul_throughput"] as? Double ?? 0
-        let responsiveness = dict["responsiveness"] as? Int ?? 0
         let baseRtt = dict["base_rtt"] as? Double ?? 0
         let dlResponsiveness = dict["dl_responsiveness"] as? Double ?? 0
         let ulResponsiveness = dict["ul_responsiveness"] as? Double ?? 0
@@ -88,6 +99,9 @@ actor SpeedTestService {
         // Convert throughput from bytes/sec to Mbps
         let downloadMbps = dlThroughput / 1_000_000 * 8
         let uploadMbps = ulThroughput / 1_000_000 * 8
+
+        // Use minimum of dl/ul responsiveness as overall RPM (worst case)
+        let responsiveness = Int(min(dlResponsiveness, ulResponsiveness))
 
         // Convert RPM to latency (60000ms / RPM = avg latency)
         let dlLatency = dlResponsiveness > 0 ? 60000.0 / dlResponsiveness : 0

@@ -46,26 +46,9 @@ struct SpeedTestView: View {
                             .foregroundStyle(.secondary)
                     }
                     .frame(maxWidth: .infinity)
-
-                    HStack(spacing: 4) {
-                        Text("\(result.responsiveness)")
-                            .fontWeight(.semibold)
-                        Text("RPM")
-                    }
-                    .foregroundStyle(responsivenessColor(result.responsivenessQuality))
-                    .frame(maxWidth: .infinity)
                 }
                 .font(.caption)
                 .monospacedDigit()
-
-                if result.hasBufferbloat {
-                    HStack(spacing: 4) {
-                        Image(systemName: "exclamationmark.triangle.fill")
-                        Text("Bufferbloat detected")
-                    }
-                    .font(.caption2)
-                    .foregroundStyle(.orange)
-                }
 
                 if let error = result.error {
                     Text(error)
@@ -77,14 +60,6 @@ struct SpeedTestView: View {
         .padding()
         .background(Color(.windowBackgroundColor))
         .cornerRadius(8)
-    }
-
-    private func responsivenessColor(_ quality: String) -> Color {
-        switch quality {
-        case "High": return .green
-        case "Medium": return .orange
-        default: return .red
-        }
     }
 }
 
